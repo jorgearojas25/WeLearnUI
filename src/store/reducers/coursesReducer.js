@@ -17,7 +17,7 @@ export default function reducer(state = {}, action = {}) {
 // ACTIONS
 
 export const getCourses = () => (dispatch) =>
-  fetch(config.baseURL + config.services.resources)
+  fetch(config.baseURL + config.services.courses)
     .then((data) => data.json())
     .then((data) => dispatch({ payload: data, type: GET_COURSES }))
     .catch((error) => console.error(error));
@@ -27,6 +27,7 @@ export const postCourses = (name, founder, resources, estudiantes) => (dispatch)
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
+      id: Math.floor(Math.random() * 1000000000),
       name: name,
       founder: founder,
       resources: resources,

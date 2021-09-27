@@ -13,9 +13,10 @@ import Typography from "@mui/material/Typography";
 import Paper from "@mui/material/Paper";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
-import { courses } from "mocks";
 import UsersTable from "components/UsersTable";
 import ResourcesTable from "components/ResourcesTable";
+import { useSelector, useDispatch } from "react-redux";
+import { getCourses } from "store/reducers/coursesReducer";
 
 function Row(props) {
   const { row } = props;
@@ -80,7 +81,22 @@ Row.propTypes = {
 };
 
 export default function CollapsibleTable() {
-  const rows = [...courses];
+  const dispatch = useDispatch();
+  const courses = useSelector((state) => state.coursesReducer);
+  const [rows, setRows] = React.useState([]);
+
+  React.useEffect(() => {
+    dispatch(getCourses());
+  }, []);
+
+  React.useEffect(() => {
+    setRows(courses);
+  }, [courses]);
+
+  if (rows.length === 0) {
+    return <Typography>Aun no hay cursos creados</Typography>;
+  }
+
   return (
     <TableContainer component={Paper}>
       <Table aria-label="collapsible table">

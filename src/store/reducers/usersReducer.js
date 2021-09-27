@@ -22,11 +22,13 @@ export const getUsers = () => (dispatch) =>
     .then((data) => dispatch({ payload: data, type: GET_USERS }))
     .catch((error) => console.error(error));
 
-export const postUser = (name, email) => (dispatch) =>
+export const postUser = (name, email) => (dispatch) => {
   fetch(config.baseURL + config.services.users, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ name: name, email: email }),
+    body: JSON.stringify({ id: Math.floor(Math.random() * 1000000000), name: name, email: email }),
   })
     .then((response) => response.json())
+    .then((data) => console.log(data))
     .catch((error) => console.error(error));
+};

@@ -5,20 +5,30 @@ import ResourcesTable from "components/ResourcesTable";
 import Box from "@mui/material/Box";
 import { Switch, Typography } from "@mui/material";
 import ResourcesForm from "components/ResourcesForm";
-import { resources } from "mocks";
+import { useSelector, useDispatch } from "react-redux";
+import { getResources } from "store/reducers/resourcesReducer";
 
 function Resources() {
-  const [showForm, setShowForm] = React.useState(false);
+  const dispatch = useDispatch();
+  const [showForm, setShowForm] = React.useState(true);
+  const resources = useSelector((state) => state.reosurcesReducer);
 
   const handleSwitch = React.useCallback((event) => {
     setShowForm(event.target.checked);
   }, []);
 
   const renderContent = React.useMemo(() => {
-    if (showForm) {
-      return <ResourcesForm />;
+    if (!resources) {
+      setShowForm(true);
     }
-    return <ResourcesTable resources={resources} height={700} />;
+    if (!showForm && resources) {
+      return <ResourcesTable resources={resources} height={700} />;
+    }
+    return <ResourcesForm />;
+  }, [showForm, resources]);
+
+  React.useEffect(() => {
+    dispatch(getResources());
   }, [showForm]);
 
   return (

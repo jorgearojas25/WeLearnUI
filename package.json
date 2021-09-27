@@ -1,17 +1,17 @@
 {
-  "name": "soft-ui-dashboard-react",
-  "version": "2.0.0",
+  "name": "WeLearn",
+  "version": "0.1.0",
   "private": true,
-  "author": "Creative Tim",
-  "license": "See license in https://www.creative-tim.com/license",
-  "description": "Material UI version of Soft UI Dashboard by Creative Tim",
-  "homepage": "https://demos.creative-tim.com/soft-ui-dashboard-react/#/dashboard",
+  "author": "WeLearn",
+  "license": "MIT",
+  "description": "WeLearn UI",
+  "homepage": "https://github.com/jorgearojas25/WeLearnUI.git",
   "bugs": {
-    "url": "https://github.com/creativetimofficial/soft-ui-dashboard-react/issues"
+    "url": "https://github.com/jorgearojas25/WeLearnUI.git"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/creativetimofficial/soft-ui-dashboard-react.git"
+    "url": "git+https://github.com/jorgearojas25/WeLearnUI.git"
   },
   "dependencies": {
     "@emotion/cache": "^11.4.0",
@@ -48,7 +48,7 @@
     "web-vitals": "^1.0.1"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "set PORT=4200 && react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",

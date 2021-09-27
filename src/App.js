@@ -37,7 +37,6 @@ import SuiBox from "components/SuiBox";
 
 // Soft UI Dashboard PRO React example components
 import Sidenav from "examples/Sidenav";
-import Configurator from "examples/Configurator";
 
 // Soft UI Dashboard PRO React themes
 import theme from "assets/theme";
@@ -104,29 +103,6 @@ export default function App() {
       return null;
     });
 
-  const configsButton = (
-    <SuiBox
-      display="flex"
-      justifyContent="center"
-      alignItems="center"
-      width="3.5rem"
-      height="3.5rem"
-      backgroundColor="white"
-      boxShadow="sm"
-      borderRadius="50%"
-      position="fixed"
-      right="2rem"
-      bottom="2rem"
-      zIndex={99}
-      customClass="cursor-pointer"
-      onClick={handleConfiguratorOpen}
-    >
-      <Icon className=" text-dark" fontSize="default">
-        settings
-      </Icon>
-    </SuiBox>
-  );
-
   return direction === "rtl" ? (
     <CacheProvider value={rtlCache}>
       <StylesProvider jss={jss}>
@@ -135,11 +111,9 @@ export default function App() {
           {layout === "dashboard" && (
             <>
               <Sidenav routes={routes} />
-              <Configurator />
-              {configsButton}
             </>
           )}
-          {layout === "vr" && <Configurator />}
+          {layout === "vr"}
           <Switch>
             {getRoutes(routes)}
             <Redirect from="*" to="/users" />
@@ -155,11 +129,9 @@ export default function App() {
         {layout === "dashboard" && (
           <>
             <Sidenav routes={routes} />
-            <Configurator />
-            {configsButton}
           </>
         )}
-        {layout === "vr" && <Configurator />}
+        {layout === "vr"}
         <Switch>
           {getRoutes(routes)}
           <Redirect from="*" to="/courses" />

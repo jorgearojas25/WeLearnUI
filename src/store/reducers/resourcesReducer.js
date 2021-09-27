@@ -23,10 +23,11 @@ export const getResources = () => (dispatch) =>
     .catch((error) => console.error(error));
 
 export const postResources = (name, url) => (dispatch) =>
-  fetch(config.baseURL + config.services.users, {
+  fetch(config.baseURL + config.services.resourcesPost, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ name: name, url: url }),
+    body: JSON.stringify({ id: Math.floor(Math.random() * 1000000000), name: name, url: url }),
   })
     .then((response) => response.json())
+    .then((data) => console.log(data))
     .catch((error) => console.error(error));

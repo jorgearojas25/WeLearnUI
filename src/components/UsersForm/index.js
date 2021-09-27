@@ -18,9 +18,10 @@ function UsersForm(props) {
   };
   const dispatch = useDispatch();
 
-  const submitForm = React.useCallback(() => {
+  const submitForm = () => {
+    console.log(name, email);
     dispatch(postUser(name, email));
-  }, []);
+  };
 
   return (
     <Box

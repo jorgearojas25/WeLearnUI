@@ -19,9 +19,10 @@ function ResourcesForm(props) {
 
   const dispatch = useDispatch();
 
-  const submitForm = React.useCallback(() => {
+  const submitForm = () => {
+    console.log(name, url);
     dispatch(postResources(name, url));
-  }, []);
+  };
 
   return (
     <Box

@@ -30,22 +30,22 @@ function CoursesForm({ users, resources }) {
 
   const dispatch = useDispatch();
 
-  const submitForm = React.useCallback(() => {
+  const submitForm = () => {
     console.log(
       name,
       founder.value,
-      users.filter((user) => studentsSelectionModel.includes(user.id)),
-      resources.filter((resource) => resourcesSelectionModel.includes(resource.id))
+      (users || []).filter((user) => studentsSelectionModel.includes(user.id)),
+      (resources || []).filter((resource) => resourcesSelectionModel.includes(resource.id))
     );
     dispatch(
       postCourses(
         name,
-        founder.value,
-        users.filter((user) => studentsSelectionModel.includes(user.id)),
-        resources.filter((resource) => resourcesSelectionModel.includes(resource.id))
+        founder?.value,
+        (users || []).filter((user) => studentsSelectionModel.includes(user.id)),
+        (resources || []).filter((resource) => resourcesSelectionModel.includes(resource.id))
       )
     );
-  }, []);
+  };
 
   React.useEffect(() => {
     setFoundersOptions(

@@ -5,20 +5,30 @@ import UsersTable from "components/UsersTable";
 import Box from "@mui/material/Box";
 import { Switch, Typography } from "@mui/material";
 import UsersForm from "components/UsersForm";
-import { users } from "mocks";
+import { useSelector, useDispatch } from "react-redux";
+import { getUsers } from "store/reducers/usersReducer";
 
 function Users() {
-  const [showForm, setShowForm] = React.useState(false);
+  const dispatch = useDispatch();
+  const [showForm, setShowForm] = React.useState(true);
+  const users = useSelector((state) => state.userReducer);
 
   const handleSwitch = React.useCallback((event) => {
     setShowForm(event.target.checked);
   }, []);
 
   const renderContent = React.useMemo(() => {
-    if (showForm) {
-      return <UsersForm />;
+    if (!users) {
+      setShowForm(true);
     }
-    return <UsersTable users={users} height={700} />;
+    if (!showForm && users) {
+      return <UsersTable users={users} height={700} />;
+    }
+    return <UsersForm />;
+  }, [showForm, users]);
+
+  React.useEffect(() => {
+    dispatch(getUsers());
   }, [showForm]);
 
   return (
