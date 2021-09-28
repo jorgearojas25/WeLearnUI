@@ -19,7 +19,15 @@ export default function reducer(state = {}, action = {}) {
 export const getResources = () => (dispatch) =>
   fetch(config.baseURL + config.services.resources)
     .then((data) => data.json())
-    .then((data) => dispatch({ payload: data, type: GET_RESOURCES }))
+    .then((data) =>
+      dispatch({
+        payload: (data || []).map((resource) => ({
+          ...resource,
+          id: resource.name + resource.url,
+        })),
+        type: GET_RESOURCES,
+      })
+    )
     .catch((error) => console.error(error));
 
 export const postResources = (name, url) => (dispatch) =>

@@ -41,8 +41,8 @@ function CoursesForm({ users, resources }) {
       postCourses(
         name,
         founder?.value,
-        (users || []).filter((user) => studentsSelectionModel.includes(user.id)),
-        (resources || []).filter((resource) => resourcesSelectionModel.includes(resource.id))
+        (resources || []).filter((resource) => resourcesSelectionModel.includes(resource.id)),
+        (users || []).filter((user) => studentsSelectionModel.includes(user.id))
       )
     );
   };

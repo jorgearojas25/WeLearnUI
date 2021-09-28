@@ -13,8 +13,10 @@ import { getResources } from "store/reducers/resourcesReducer";
 function Resources() {
   const dispatch = useDispatch();
   const [showForm, setShowForm] = React.useState(false);
-  const users = useSelector((state) => state.userReducer);
-  const resources = useSelector((state) => state.resourcesReducer);
+  const { users, resources } = useSelector((state) => ({
+    users: state.userReducer,
+    resources: state.reosurcesReducer,
+  }));
 
   const handleSwitch = React.useCallback((event) => {
     setShowForm(event.target.checked);
