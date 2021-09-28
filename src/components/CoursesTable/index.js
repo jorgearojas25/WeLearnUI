@@ -93,7 +93,7 @@ export default function CollapsibleTable() {
     setRows(courses);
   }, [courses]);
 
-  if (rows.length) {
+  if (rows.length > 0) {
     return (
       <TableContainer component={Paper}>
         <Table aria-label="collapsible table">
